@@ -1,52 +1,44 @@
 <?php
-
-
 namespace App\Application\Api;
-
 
 use App\Application\Api\Response\ApiResponse;
 use App\Application\Api\Response\InvalidApiCallResponse;
 use App\Application\Api\Response\SuccessApiResponse;
 use App\Application\Command\AddProductCommand;
-use Lib\CQRS\BaseCommand;
 use Lib\CQRS\CommandBus;
 use Lib\CQRS\CommandFactory;
-use Lib\CQRS\CommandValidator;
 
 class ApiService
 {
-    private array $endpoints;
-
-    private CommandValidator $commandValidator;
+    private array $endpoints=[];
 
     private CommandBus $commandBus;
 
-    public function __construct(CommandValidator $commandValidator, CommandBus $commandBus)
+    private CommandFactory $commandFactory;
+
+    public function __construct(CommandFactory $commandFactory, CommandBus $commandBus)
     {
-        $this->commandValidator = $commandValidator;
         $this->commandBus = $commandBus;
+        $this->commandFactory = $commandFactory;
         $this->registerEndpoints();
     }
 
     private function registerEndpoints()
     {
-        $this->registerEndpoint("/addProduct", AddProductCommand::class);
+        /* this mapping could be in config file */
+        $this->registerEndpoint("addProduct", AddProductCommand::class);
     }
 
     public function call(string $apiMethod, array $parameters) : ApiResponse
     {
-        if(!$this->isEndpointExist($apiMethod)) {
-            return new InvalidApiCallResponse("Endpoint $apiMethod does not exist.");
-        }
         $commandClass = $this->resolveCommandClass($apiMethod);
         if(!$commandClass) {
-            return new InvalidApiCallResponse("Endpoint $apiMethod is misconfigured.");
+            return new InvalidApiCallResponse("Endpoint $apiMethod does not exist or is misconfigured.");
         }
-        $command=CommandFactory::create($commandClass, $parameters);
-        $commandValidationResult=$this->commandValidator->validateCommand($command);
-        if(!$commandValidationResult->isValid()) {
-            $errors=$commandValidationResult->getErrors();
-            return new InvalidApiCallResponse("Wrong $parameters for endpoint $apiMethod", $errors);
+        $command=$this->commandFactory->validateAndCreate($commandClass, $parameters);
+        if(!$command) {;
+            $validationError = $this->commandFactory->getValidationError();
+            return new InvalidApiCallResponse("Invalid api call (". $validationError.").");
         }
 
         try {
@@ -61,14 +53,6 @@ class ApiService
     private function registerEndpoint(string $string, string $class)
     {
         $this->endpoints[] = new Endpoint($string, $class);
-    }
-
-    private function isEndpointExist(string $apiMethod)
-    {
-        foreach($this->endpoints as $endpoint) {
-            if($endpoint->getApiMethod()===$apiMethod) return true;
-        }
-        return false;
     }
 
     private function resolveCommandClass(string $apiMethod) : ?string
