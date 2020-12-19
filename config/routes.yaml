@@ -1,0 +1,3 @@
+api:
+    path: /api/{method}
+    controller: App\Infrastructure\Symfony\Controller\ApiController::index

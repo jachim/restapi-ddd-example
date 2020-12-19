@@ -1,0 +1,18 @@
+App\Domain\Product\Product:
+  type: entity
+  table: products
+  repositoryClass: App\Infrastructure\Doctrine\Repository\DoctrineProductRepository
+  fields:
+    name:
+      type: string
+      length: 64
+      nullable: false
+  embedded:
+    productId:
+      class: App\Domain\Product\ValueObject\ProductId
+      columnPrefix: false
+    price:
+      class: App\Domain\Product\ValueObject\Price
+      columnPrefix: price_
+
+

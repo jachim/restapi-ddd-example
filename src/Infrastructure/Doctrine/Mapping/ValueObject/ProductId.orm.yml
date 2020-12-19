@@ -1,0 +1,7 @@
+App\Domain\Product\ValueObject\ProductId:
+  type: embeddable
+  id:
+    id:
+      type: string
+      length: 100
+      nullable: false
