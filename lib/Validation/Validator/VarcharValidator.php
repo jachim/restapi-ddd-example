@@ -21,6 +21,6 @@ class VarcharValidator extends Validator
 
     public function getErrorMessage(): string
     {
-        return "This field must be a varchar({$this->length})";
+        return "This field must be a varchar({$this->length}).";
     }
 }
