@@ -9,11 +9,11 @@ class DoubleValidator extends Validator
 
     public function validateValue(mixed $value): bool
     {
-        return is_double($value);
+        return is_numeric($value);
     }
 
-    public function getErrorMessage(): string
+    public function generateErrorMessage(string $fieldName): string
     {
-        return "This field must be double.";
+        return "'$fieldName' must be a double.";
     }
 }

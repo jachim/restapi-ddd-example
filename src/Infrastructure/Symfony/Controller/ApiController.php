@@ -18,7 +18,7 @@ class ApiController
     public function index(Request $request)
     {
         $apiMethod=$request->get("apiMethod");
-        $parameters=$request->request->all();
+        $parameters=$request->query->all();
         $apiResponse=$this->apiService->call($apiMethod, $parameters);
         return new Response($apiResponse);
     }

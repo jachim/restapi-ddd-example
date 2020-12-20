@@ -37,8 +37,8 @@ class ApiService
         }
         $command=$this->commandFactory->validateAndCreate($commandClass, $parameters);
         if(!$command) {;
-            $validationError = $this->commandFactory->getValidationError();
-            return new InvalidApiCallResponse("Invalid api call (". $validationError.").");
+            $validationResult = $this->commandFactory->getValidationResult();
+            return new InvalidApiCallResponse("Invalid api call", $validationResult->getErrors());
         }
 
         try {

@@ -12,8 +12,8 @@ class IntegerValidator extends Validator
         return is_int($value);
     }
 
-    public function getErrorMessage(): string
+    public function generateErrorMessage(string $fieldName): string
     {
-        return "This field must be integer.";
+        return "'$fieldName' must be an integer.";
     }
 }

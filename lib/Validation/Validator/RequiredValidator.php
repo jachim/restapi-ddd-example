@@ -12,8 +12,8 @@ class RequiredValidator extends Validator
         return !empty($value);
     }
 
-    public function getErrorMessage(): string
+    public function generateErrorMessage(string $fieldName) : string
     {
-        return "This field is required.";
+        return "'$fieldName' is required.";
     }
 }

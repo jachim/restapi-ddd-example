@@ -19,8 +19,8 @@ final class ValidationResult
     public function merge(ValidationResult $result) : ValidationResult
     {
         return new ValidationResult(
-            $result->isValid() && $this->isValid(),
-            array_merge($result->getErrors(), $result->getErrors())
+            $this->isValid() && $result->isValid(),
+            array_merge($this->getErrors(), $result->getErrors())
         );
     }
 
@@ -34,6 +34,9 @@ final class ValidationResult
         return $this->errors;
     }
 
-
+    public function getErrorsString(): string
+    {
+        return implode(", ", $this->errors);
+    }
 
 }

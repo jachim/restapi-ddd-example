@@ -1,8 +1,5 @@
 <?php
-
-
 namespace Lib\Validation;
-
 
 use Lib\Validation\Attribute\AssertAttribute;
 use Lib\Validation\Validator\Validator;
@@ -15,7 +12,7 @@ class ClassPropertiesValidator
         foreach($reflectionClass->getProperties() as $property) {
             $propertyName = $property->getName();
             $propertyValue=array_key_exists($propertyName, $values) ? $values[$propertyName] : null;
-            $validationResult->merge($this->validateProperty($property, $propertyValue));
+            $validationResult=$validationResult->merge($this->validateProperty($property, $propertyValue));
         }
         return $validationResult;
     }
@@ -25,7 +22,7 @@ class ClassPropertiesValidator
         $validators=$this->getValidatorsForProperty($property);
         foreach($validators as $validator) {
             if(!$validator->validateValue($propertyValue)) {
-                $error="[".$property->getName()."] ".$validator->getErrorMessage();
+                $error=$validator->generateErrorMessage($property->getName());
                 return new ValidationResult(false, [$error]);
             }
         }

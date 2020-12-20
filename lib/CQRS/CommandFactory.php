@@ -11,11 +11,12 @@ class CommandFactory
     public function validateAndCreate(string $className, array $parameters) : ?BaseCommand
     {
         $reflectionClass=new \ReflectionClass($className);
-        $this->validationResult = $this->validateCommand($reflectionClass, $parameters);
+        $this->validateCommand($reflectionClass, $parameters);
         if($this->validationResult->isValid()) {
             $command = $reflectionClass->newInstance($parameters);
             return $command;
         }
+        return null;
     }
 
     public function getValidationResult(): ValidationResult
@@ -23,14 +24,15 @@ class CommandFactory
         return $this->validationResult;
     }
 
-    private function validateCommand(\ReflectionClass $commandReflectionClass, array $parameters) : ValidationResult
+    private function validateCommand(\ReflectionClass $commandReflectionClass, array $parameters) : void
     {
         if($commandReflectionClass->getParentClass()?->getName() !== BaseCommand::class) {
-           return new ValidationResult(false, ["Command class should extend ".BaseCommand::class."."]);
+            $this->validationResult = new ValidationResult(false, ["Command class should extend ".BaseCommand::class."."]);
+            return;
         }
 
         $classPropertiesValidator=new ClassPropertiesValidator();
         $validationResult=$classPropertiesValidator->validate($commandReflectionClass, $parameters);
-        return $validationResult;
+        $this->validationResult=$validationResult;
     }
 }
