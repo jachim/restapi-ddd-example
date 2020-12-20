@@ -1,12 +1,9 @@
 <?php
-
-
 namespace Lib\CQRS;
 
+use LiteCQRS\Plugin\SymfonyBundle\ContainerCommandBus;
 
-use LiteCQRS\Bus\DirectCommandBus;
-
-class CommandBus extends DirectCommandBus
+class CommandBus extends ContainerCommandBus
 {
 
 }

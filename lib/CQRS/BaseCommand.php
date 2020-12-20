@@ -16,4 +16,5 @@ abstract class BaseCommand implements Command
             }
         }
     }
+
 }

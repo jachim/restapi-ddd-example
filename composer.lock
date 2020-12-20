@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jachim/litecqrs-php.git",
-                "reference": "6249b57dbf4b7557f6e232f51f7844b892bde93b"
+                "reference": "65d68e8064aa04b1e774ec48a1e7867767a367f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jachim/litecqrs-php/zipball/6249b57dbf4b7557f6e232f51f7844b892bde93b",
-                "reference": "6249b57dbf4b7557f6e232f51f7844b892bde93b",
+                "url": "https://api.github.com/repos/jachim/litecqrs-php/zipball/65d68e8064aa04b1e774ec48a1e7867767a367f6",
+                "reference": "65d68e8064aa04b1e774ec48a1e7867767a367f6",
                 "shasum": ""
             },
             "require-dev": {
@@ -40,7 +40,7 @@
             "support": {
                 "source": "https://github.com/jachim/litecqrs-php/tree/symfony5"
             },
-            "time": "2020-12-20T11:35:32+00:00"
+            "time": "2020-12-20T16:05:07+00:00"
         },
         {
             "name": "composer/package-versions-deprecated",

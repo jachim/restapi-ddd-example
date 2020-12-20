@@ -1,22 +1,19 @@
 <?php
-
-
 namespace App\Infrastructure\Doctrine\Repository;
-
 
 use App\Domain\Product\Product;
 use App\Domain\Product\Repository\ProductRepository;
 use App\Domain\Product\ValueObject\ProductId;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Lib\Domain\Aggregate;
 
 class DoctrineProductRepository implements ProductRepository
 {
     const ENTITY_CLASS="App\Domain\Product\Product";
 
-    private EntityManager $entityManager;
+    private EntityManagerInterface $entityManager;
 
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }

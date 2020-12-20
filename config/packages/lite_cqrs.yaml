@@ -1,0 +1,4 @@
+parameters:
+    litecqrs.command_bus.class: Lib\CQRS\CommandBus
+services:
+    Lib\CQRS\CommandBus: '@command_bus'
