@@ -12,8 +12,8 @@ class AddProductCommand extends BaseCommand
     public $name;
 
     #[Required, Double]
-    public $priceAmount;
+    public $price;
 
     #[Required, Varchar(3)]
-    public $priceCurrency;
+    public $currency;
 }

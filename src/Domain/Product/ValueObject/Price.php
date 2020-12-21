@@ -20,6 +20,11 @@ class Price extends ValueObject
         return $price->getAmount()===$this->getAmount() && $price->getCurrency()===$this->getCurrency();
     }
 
+    public function isGreaterThanZero()
+    {
+        return $this->getAmount() > 0;
+    }
+
     public function add(Price $price) : Price
     {
         if($price->getCurrency()!==$this->getCurrency()) {

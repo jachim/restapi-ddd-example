@@ -1,13 +1,9 @@
 <?php
-
-
 namespace App\Application\Handler;
-
 
 use App\Application\Command\AddProductCommand;
 use App\Domain\Product\Factory\ProductFactory;
 use App\Domain\Product\Repository\ProductRepository;
-use Lib\CQRS\CommandValidator;
 
 class AddProductHandler
 {
@@ -23,7 +19,7 @@ class AddProductHandler
 
     public function addProduct(AddProductCommand $command)
     {
-        $product = $this->productFactory->createProduct((string)$command->name, (float)$command->priceAmount, (string)$command->priceCurrency);
+        $product = $this->productFactory->createProduct((string)$command->name, (float)$command->price, (string)$command->currency);
         $this->productRepository->save($product);
     }
 }

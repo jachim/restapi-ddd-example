@@ -26,7 +26,7 @@ class ApiService
     private function registerEndpoints()
     {
         /* this mapping could be in config file */
-        $this->registerEndpoint("addProduct", AddProductCommand::class);
+        $this->registerEndpoint("product/add", AddProductCommand::class);
     }
 
     public function call(string $apiMethod, array $parameters) : ApiResponse

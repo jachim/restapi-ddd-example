@@ -32,7 +32,6 @@ class CommandFactory
         }
 
         $classPropertiesValidator=new ClassPropertiesValidator();
-        $validationResult=$classPropertiesValidator->validate($commandReflectionClass, $parameters);
-        $this->validationResult=$validationResult;
+        $this->validationResult=$classPropertiesValidator->validate($commandReflectionClass, $parameters);
     }
 }
