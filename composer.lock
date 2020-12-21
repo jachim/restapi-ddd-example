@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jachim/litecqrs-php.git",
-                "reference": "65d68e8064aa04b1e774ec48a1e7867767a367f6"
+                "reference": "c754c1fcb195f4ecf4aa6776b60b1952eb3d55e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jachim/litecqrs-php/zipball/65d68e8064aa04b1e774ec48a1e7867767a367f6",
-                "reference": "65d68e8064aa04b1e774ec48a1e7867767a367f6",
+                "url": "https://api.github.com/repos/jachim/litecqrs-php/zipball/c754c1fcb195f4ecf4aa6776b60b1952eb3d55e4",
+                "reference": "c754c1fcb195f4ecf4aa6776b60b1952eb3d55e4",
                 "shasum": ""
             },
             "require-dev": {
@@ -40,7 +40,7 @@
             "support": {
                 "source": "https://github.com/jachim/litecqrs-php/tree/symfony5"
             },
-            "time": "2020-12-20T16:05:07+00:00"
+            "time": "2020-12-21T05:13:18+00:00"
         },
         {
             "name": "brick/math",
