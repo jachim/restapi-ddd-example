@@ -19,7 +19,7 @@ class AddProductHandler
 
     public function addProduct(AddProductCommand $command)
     {
-        $product = $this->productFactory->createProduct((string)$command->name, (float)$command->price, (string)$command->currency);
+        $product = $this->productFactory->createProduct($command->name, $command->price, $command->currency);
         $this->productRepository->save($product);
     }
 }

@@ -9,11 +9,11 @@ use Lib\CQRS\BaseCommand;
 class AddProductCommand extends BaseCommand
 {
     #[Required, Varchar(100)]
-    public $name;
+    public string $name;
 
     #[Required, Double]
-    public $price;
+    public string $price;
 
     #[Required, Varchar(3)]
-    public $currency;
+    public string $currency;
 }

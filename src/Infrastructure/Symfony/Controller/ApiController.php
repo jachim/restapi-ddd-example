@@ -17,13 +17,13 @@ class ApiController
     }
 
     /**
-     * @Route("/api/{apiMethod}", methods={"POST"}, requirements={"apiMethod"="[a-z/]+"})
+     * @Route("/api/{apiMethod}", methods={"PUT"}, requirements={"apiMethod"="[a-z/]+"})
      */
     public function index(Request $request)
     {
         $apiMethod=$request->get("apiMethod");
         $parameters=$request->request->all();
         $apiResponse=$this->apiService->call($apiMethod, $parameters);
-        return new Response($apiResponse);
+        return new Response($apiResponse, $apiResponse->getStatusCode());
     }
 }

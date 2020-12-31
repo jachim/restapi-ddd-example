@@ -15,7 +15,7 @@ class ProductPriceChangedEvent extends DomainEvent
     {
         $this->newPrice = $newPrice;
         $this->oldPrice = $oldPrice;
-        parent::__construct([]);
+        parent::__construct();
     }
 
     public function getNewPrice(): Price

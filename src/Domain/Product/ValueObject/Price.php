@@ -13,6 +13,9 @@ class Price extends ValueObject
     {
         $this->amount = $amount;
         $this->currency = $currency;
+        if(!$this->isGreaterThanZero()) {
+            throw new DomainException("Price must be greate than zero.");
+        }
     }
 
     public function isEqual(Price $price) : bool

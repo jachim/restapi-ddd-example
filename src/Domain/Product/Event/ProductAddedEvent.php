@@ -14,10 +14,10 @@ class ProductAddedEvent extends DomainEvent
 
     public function __construct(string $productId, string $name, Price $price)
     {
-        parent::__construct([]);
         $this->productId = $productId;
         $this->name = $name;
         $this->price = $price;
+        parent::__construct();
     }
 
     public function getProductId(): string

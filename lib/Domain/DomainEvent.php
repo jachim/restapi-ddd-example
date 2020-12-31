@@ -8,7 +8,7 @@ use LiteCQRS\DomainObjectChanged;
 
 abstract class DomainEvent extends DomainObjectChanged
 {
-    public function __construct(array $args)
+    public function __construct(array $args=[])
     {
         parent::__construct(get_called_class(), $args);
     }
